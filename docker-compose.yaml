@@ -5,11 +5,12 @@ services:
     image: fluent/fluent-bit
     volumes:
       - ./fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
-    depends_on:
-      - elasticsearch
-  elasticsearch:
-    image: elasticsearch:7.6.2
-    ports:
-      - "9200:9200"
-    environment:
-      - discovery.type=single-node
+      - ./nginx.log:/fluent-bit/access.log:ro
+    # depends_on:
+    #   - elasticsearch
+  # elasticsearch:
+  #   image: elasticsearch:7.6.2
+  #   ports:
+  #     - "9200:9200"
+  #   environment:
+  #     - discovery.type=single-node
